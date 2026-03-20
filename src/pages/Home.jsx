@@ -3,32 +3,38 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
-import Experience from '../components/Experience'; // New component
+import Experience from '../components/Experience';
 import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center">
+    // Removed 'items-center' to allow full-width growth
+    <div className="flex flex-col w-full bg-white dark:bg-[#020617] transition-colors duration-500">
       <Navbar />
       
-      <main className="w-full max-w-6xl px-6 flex flex-col">
-        {/* About Section */}
-        <section id="about" className="min-h-[80vh] flex items-center">
+      {/* 1. Removed 'max-w-6xl' to unlock the width.
+          2. Removed 'px-6' so content touches the edges.
+          3. We handle internal padding inside the components for better control.
+      */}
+      <main className="w-full flex flex-col">
+        
+        {/* About/Hero Section - Full Height & Width */}
+        <section id="about" className="w-full min-h-screen">
           <Hero />
         </section>
 
-        {/* Experience Section - New */}
-        <section id="experience" className="py-24 border-t border-black/5 dark:border-white/5">
+        {/* Experience Section - Edge to Edge */}
+        <section id="experience" className="w-full border-t border-slate-200 dark:border-slate-800">
           <Experience />
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="py-24 border-t border-black/5 dark:border-white/5">
+        {/* Skills Section - Edge to Edge */}
+        <section id="skills" className="w-full border-t border-slate-200 dark:border-slate-800">
           <Skills />
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-24 border-t border-black/5 dark:border-white/5">
+        {/* Projects Section - Edge to Edge */}
+        <section id="projects" className="w-full border-t border-slate-200 dark:border-slate-800">
           <Projects />
         </section>
       </main>
