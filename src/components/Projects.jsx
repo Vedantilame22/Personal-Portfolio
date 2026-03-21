@@ -1,134 +1,184 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Cpu, Globe, Box, Code2 } from 'lucide-react';
+import { Github, Cpu, Globe, Box, Code2, Terminal, Mic, Users, Tractor, UserCircle, CloudSun } from 'lucide-react';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Employee Management",
-      desc: "Full-stack system featuring multi-level RBAC (Admin, Head, Employee), real-time task tracking, and secure authentication flows.",
-      tags: ["MERN", "Redux", "Auth", "Dashboard"],
-      link: "https://github.com/Vedantilame22/Employee-Management",
-      icon: <Cpu size={20} />,
-      status: "STABLE_BUILD"
-    },
-    {
-      title: "Fruits Bounty",
-      desc: "Comprehensive E-commerce platform with Razorpay integration, automated order tracking, and a robust administrative control panel.",
-      tags: ["React", "Node.js", "Razorpay", "MongoDB"],
-      link: "https://fruit-bounty.vercel.app/",
-      icon: <Box size={20} />,
-      status: "LIVE_PROD"
-    },
-    {
-      title: "G-Crown Luxury",
-      desc: "A high-fidelity jewelry retail interface focused on pixel-perfect UI/UX, advanced filtering, and premium brand aesthetics.",
-      tags: ["Frontend", "Figma", "Tailwind", "Design"],
-      link: "https://g-crown.vercel.app/",
-      icon: <Globe size={20} />,
-      status: "UI_OPTIMIZED"
-    },
-    {
-      title: "Task Management",
-      desc: "Productivity engine with centralized Redux state management, real-time CRUD operations, and performance-tuned REST APIs.",
-      tags: ["Redux", "Express", "API", "MERN"],
-      link: "https://github.com/Vedantilame22/Task-Management-System",
-      icon: <Code2 size={20} />,
-      status: "ACTIVE_NODE"
-    }
-  ];
+  const projects = [
+    {
+      title: "Fruits Bounty E-Comm",
+      desc: "Transformed complex E-commerce requirements into a polished frontend. Integrated Razorpay payment gateways with custom feedback loops and built a high-speed product catalog optimized for Core Web Vitals and SEO.",
+      tags: ["React", "Razorpay SDK", "SEO", "Performance"],
+      link: "https://fruit-bounty.vercel.app/",
+      icon: <Box size={20} />,
+      status: "LIVE_PROD",
+      file: "storefront.jsx"
+    },
+    {
+      title: "G-Crown Luxury",
+      desc: "Focused on high-fidelity UI/UX, achieving pixel-perfect accuracy from Figma designs. Implemented advanced micro-interactions using Framer Motion to reflect a premium brand identity while maintaining optimized asset delivery.",
+      tags: ["Figma-to-Code", "Framer Motion", "Luxury UI"],
+      link: "https://g-crown.vercel.app/",
+      icon: <Globe size={20} />,
+      status: "UI_POLISHED",
+      file: "brandStyles.css"
+    },
+    {
+      title: "Personal Portfolio",
+      desc: "Architected a dynamic MERN-stack portfolio featuring a custom CMS. Specialized in creating a fluid, responsive interface with high-end typography and interactive UI elements that highlight development milestones and technical skills.",
+      tags: ["MERN", "Framer Motion", "CMS", "Tailwind"],
+      link: "https://github.com/Vedantilame22/",
+      icon: <UserCircle size={20} />,
+      status: "STABLE",
+      file: "portfolio.tsx"
+    },
+    {
+      title: "AI Voice Agent",
+      desc: "Architected a high-performance React interface featuring dynamic SVG voice-wave visualizations. Leveraged Web Speech API for real-time interaction and optimized component re-rendering for a low-latency experience.",
+      tags: ["React", "Web Speech API", "SVG Animation"],
+      link: "https://github.com/Vedantilame22/",
+      icon: <Mic size={20} />,
+      status: "AI_ACTIVE",
+      file: "voiceEngine.tsx"
+    },
+    {
+      title: "Farming Rental Portal",
+      desc: "Engineered a mobile-first farming equipment portal focused on accessibility. Developed complex filtering systems and a custom-built booking calendar using Tailwind CSS to ensure an intuitive UX for diverse users.",
+      tags: ["React", "Tailwind CSS", "AgriTech"],
+      link: "https://github.com/Vedantilame22/",
+      icon: <Tractor size={20} />,
+      status: "PRODUCTION",
+      file: "agriBooking.jsx"
+    },
+    {
+      title: "Media Task & Attendance",
+      desc: "Developed a centralized dashboard for workforce tracking. Specialized in crafting reusable UI components and implementing persistent state management with Redux to handle high-frequency data updates seamlessly.",
+      tags: ["React", "Redux Toolkit", "Data Viz"],
+      link: "https://github.com/Vedantilame22/",
+      icon: <Users size={20} />,
+      status: "DEPLOYED",
+      file: "dashboard.js"
+    },
+    {
+      title: "Employee Management",
+      desc: "Led the frontend implementation of a multi-role RBAC system. Created a sophisticated dashboard architecture that dynamically renders views based on user permissions, emphasizing clean code and scalable structures.",
+      tags: ["React", "RBAC", "Context API"],
+      link: "https://github.com/Vedantilame22/Employee-Management",
+      icon: <Cpu size={20} />,
+      status: "STABLE_V2",
+      file: "adminView.tsx"
+    },
+    {
+      title: "Weather Web Application",
+      desc: "Engineered a real-time weather tracker using vanilla JavaScript. Specialized in asynchronous programming and DOM manipulation to fetch data from OpenWeatherMap API and provide dynamic, location-based UI updates.",
+      tags: ["JavaScript", "API Integration", "CSS3", "HTML5"],
+      link: "https://github.com/Vedantilame22/",
+      icon: <CloudSun size={20} />,
+      status: "ACTIVE",
+      file: "weatherApp.js"
+    },
+    {
+      title: "Task Management Board",
+      desc: "Engineered a minimalist productivity engine with a heavy focus on frontend interactivity. Built real-time UI synchronization and drag-and-drop logic for task transitions and state updates.",
+      tags: ["MERN", "Interactivity", "Real-time UI"],
+      link: "https://github.com/Vedantilame22/Task-Management-System",
+      icon: <Code2 size={20} />,
+      status: "ACTIVE_DEV",
+      file: "kanbanLogic.js"
+    }
+  ];
 
-  return (
-    <section className="w-full py-20 px-4 md:px-10 bg-white dark:bg-[#020617] transition-colors duration-500">
-      <div className="max-w-screen-2xl mx-auto">
-        
-        {/* Massive Synchronized Heading */}
-        <div className="flex flex-col mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 mb-4"
-          >
-             
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-slate-900 dark:text-slate-50 font-mono leading-none"
-          >
-            Projects
-          </motion.h2>
-        </div>
+  return (
+    <section className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-20 lg:py-32">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[#3FB950]/5 blur-[180px] rounded-full pointer-events-none" />
 
-        {/* Creative Grid Layout - Matching Experience Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((p, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ translateY: -5 }}
-              className="relative group p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 transition-all duration-300 overflow-hidden"
-            >
-              {/* Animated Corner Accents */}
-              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-transparent group-hover:border-indigo-600 transition-all duration-500 rounded-tr-xl"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-transparent group-hover:border-indigo-600 transition-all duration-500 rounded-bl-xl"></div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="space-y-4">
+            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+              Crafted <span className="text-[#3FB950]"> Projects</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+            Showcasing engineered interfaces, scalable architectures, and user-centric solutions.
+          </p>
+        </div>
 
-              {/* Background Index Number */}
-              <span className="absolute top-4 right-6 text-8xl font-black text-slate-200 dark:text-slate-800/30 font-mono pointer-events-none select-none group-hover:text-indigo-500/10 transition-colors">
-                0{i + 1}
-              </span>
+        {/* 3-Column Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
+              className="group flex flex-col rounded-xl bg-[#0D1117] border border-[#30363D] hover:border-[#3FB950]/40 transition-all duration-300 overflow-hidden shadow-2xl"
+            >
+              {/* VS Code Tab Header */}
+              <div className="flex items-center justify-between px-4 py-2.5 bg-[#161B22] border-b border-[#30363D]">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F] opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="h-4 w-[1px] bg-[#30363D] mx-1" />
+                  <div className="flex items-center gap-2">
+                    <Terminal size={12} className="text-[#3FB950]" />
+                    <span className="text-[10px] font-mono text-[#8B949E] group-hover:text-[#F0F6FC] transition-colors truncate max-w-[80px]">
+                      {p.file}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[9px] font-mono bg-[#3FB950]/10 text-[#3FB950] px-1.5 py-0.5 rounded border border-[#3FB950]/20 font-bold">
+                    {p.status}
+                </span>
+              </div>
 
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-indigo-600 text-white rounded-lg shadow-lg shadow-indigo-500/20">
-                    {p.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-50 uppercase tracking-tight font-mono truncate max-w-[200px] md:max-w-none">
-                      {p.title}
-                    </h3>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-[0.2em]">
-                      Deployment: Ready
-                    </p>
-                  </div>
-                </div>
+              {/* Card Body */}
+              <div className="p-6 flex-grow">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="p-2.5 bg-[#161B22] border border-[#30363D] text-[#3FB950] rounded-lg group-hover:border-[#3FB950]/30 transition-all">
+                    {p.icon}
+                  </div>
+                  <div className="flex gap-2">
+                    {/* Only GitHub icon remains for redirection */}
+                    <a 
+                      href={p.link} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      title="View Project"
+                      className="p-2.5 bg-[#161B22] border border-[#30363D] hover:border-[#3FB950] rounded-lg transition-all text-[#8B949E] hover:text-[#3FB950]"
+                    >
+                      <Github size={18} />
+                    </a>
+                  </div>
+                </div>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {p.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-mono border border-indigo-200 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full uppercase font-bold tracking-widest">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-l-2 border-slate-200 dark:border-slate-800 pl-4 group-hover:border-indigo-500 transition-colors mb-8">
-                  {p.desc}
-                </p>
+                <h3 className="text-lg font-bold text-[#F0F6FC] mb-3 group-hover:text-[#3FB950] transition-colors">
+                  {p.title}
+                </h3>
+                
+                <p className="text-[#8B949E] text-xs leading-relaxed mb-6  opacity-90 line-clamp-4">
+                  
+                  {p.desc}
+                </p>
 
-                {/* Status Indicator & Links */}
-                <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">{p.status}</span>
-                    </div>
-                    <div className="flex gap-4">
-                      <a href={p.link} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors">
-                        <Github size={18} />
-                      </a>
-                      <a href={p.link} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors">
-                        <ExternalLink size={18} />
-                      </a>
-                    </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {p.tags.map(tag => (
+                    <span key={tag} className="text-[9px] font-mono bg-[#161B22] border border-[#30363D] text-[#F0F6FC]/60 px-2 py-0.5 rounded group-hover:border-[#3FB950]/20 transition-colors">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export default Projects; 
+export default Projects;

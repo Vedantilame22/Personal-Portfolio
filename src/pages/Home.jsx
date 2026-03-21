@@ -8,33 +8,24 @@ import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    // Removed 'items-center' to allow full-width growth
-    <div className="flex flex-col w-full bg-white dark:bg-[#020617] transition-colors duration-500">
+    <div className="flex flex-col min-h-screen bg-[#0B0E14] text-[#F0F6FC] antialiased selection:bg-[#3FB950]/30">
       <Navbar />
       
-      {/* 1. Removed 'max-w-6xl' to unlock the width.
-          2. Removed 'px-6' so content touches the edges.
-          3. We handle internal padding inside the components for better control.
-      */}
-      <main className="w-full flex flex-col">
-        
-        {/* About/Hero Section - Full Height & Width */}
-        <section id="about" className="w-full min-h-screen">
+      <main className="flex-grow">
+        {/* Sections now flow naturally without forced min-height or extra outer padding */}
+        <section id="about">
           <Hero />
         </section>
 
-        {/* Experience Section - Edge to Edge */}
-        <section id="experience" className="w-full border-t border-slate-200 dark:border-slate-800">
-          <Experience />
-        </section>
-
-        {/* Skills Section - Edge to Edge */}
-        <section id="skills" className="w-full border-t border-slate-200 dark:border-slate-800">
+        <section id="skills">
           <Skills />
         </section>
 
-        {/* Projects Section - Edge to Edge */}
-        <section id="projects" className="w-full border-t border-slate-200 dark:border-slate-800">
+        <section id="experience">
+          <Experience />
+        </section>
+
+        <section id="projects">
           <Projects />
         </section>
       </main>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Database, Terminal, Layout, ShieldCheck } from 'lucide-react';
+import { Layout, Database, Terminal } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -37,84 +37,74 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section className="w-full py-20 bg-white dark:bg-[#020617] transition-colors duration-500">
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-10">
+    <section className="relative w-full bg-[#0B0E14] overflow-hidden font-sans antialiased">
+      {/* Background technical accent glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3FB950]/5 blur-[150px] rounded-full pointer-events-none" />
+      
+      {/* Container with increased bottom padding */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 py-20 lg:py-32">
         
-        {/* Section Heading synchronized with Experience */}
-        <div className="flex flex-col mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 mb-4"
-          >
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-slate-900 dark:text-slate-50 font-mono"
-          >
-           Technical Stack
-          </motion.h2>
+        {/* Header Section with increased margin bottom */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="space-y-4">
+            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+              Technical <span className="text-[#3FB950]">Expertise</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+            Engineered for scalability, high performance, and seamless user experiences across the full development lifecycle.
+          </p>
         </div>
 
-        {/* Competency Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Grid Layout with increased spacing between category columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-20">
           {skillCategories.map((category, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-              whileHover={{ translateY: -5 }}
-              className="relative group p-8 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 transition-all duration-300 overflow-hidden"
-            >
-              {/* Animated Corner Accents */}
-              <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-transparent group-hover:border-indigo-600 transition-all duration-500 rounded-tr-xl"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-transparent group-hover:border-indigo-600 transition-all duration-500 rounded-bl-xl"></div>
+            <div key={idx} className="space-y-10">
+              {/* Category Title */}
+              <div className="flex items-center gap-4">
+                <div className="text-[#3FB950] opacity-80">{category.icon}</div>
+                <h3 className="text-xl font-bold text-[#F0F6FC] uppercase tracking-widest font-mono">
+                  {category.title}
+                </h3>
+              </div>
 
-              {/* Category Background Index */}
-              <span className="absolute top-4 right-6 text-7xl font-black text-slate-200 dark:text-slate-800/30 font-mono pointer-events-none select-none group-hover:text-indigo-500/10 transition-colors">
-                0{idx + 1}
-              </span>
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="p-3 bg-indigo-600 text-white rounded-lg shadow-lg shadow-indigo-500/20">
-                    {category.icon}
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-50 uppercase tracking-tight font-mono">
-                    {category.title}
-                  </h3>
-                </div>
-
-                {/* Skill Icons List */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  {category.skills.map((skill, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 group/skill hover:border-indigo-500/50 transition-colors">
+              {/* Skills List with increased spacing between rows */}
+              <div className="grid grid-cols-1 gap-6">
+                {category.skills.map((skill, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    className="flex items-center gap-5 group cursor-default"
+                  >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#161B22] border border-[#8B949E]/10 group-hover:border-[#3FB950]/40 transition-all duration-300">
                       <img 
                         src={skill.icon} 
                         alt={skill.name} 
-                        className={`w-6 h-6 object-contain transition-transform group-hover/skill:scale-110 ${skill.invertDark ? 'dark:invert' : ''}`}
+                        className={`w-7 h-7 object-contain transition-transform group-hover:scale-110 ${skill.invertDark ? 'brightness-200' : ''}`}
                       />
-                      <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 group-hover/skill:text-indigo-600 dark:group-hover/skill:text-indigo-400">
-                        {skill.name}
-                      </span>
                     </div>
-                  ))}
-                </div>
-
-                {/* Status Indicator Bar */}
-                <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></div>
-                        <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Stack_Status: Optimized</span>
+                    <div className="flex flex-col flex-grow">
+                      <div className="flex justify-between items-end">
+                        <span className="text-base font-bold text-[#F0F6FC] group-hover:text-[#3FB950] transition-colors">
+                          {skill.name}
+                        </span>
+                      </div>
+                      <div className="w-full h-[1px] bg-[#161B22] mt-3 overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "100%" }}
+                          transition={{ duration: 1.2, ease: "circOut" }}
+                          className="h-full bg-gradient-to-r from-[#3FB950]/60 to-transparent"
+                        />
+                      </div>
                     </div>
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                         <ShieldCheck size={14} className="text-indigo-500" />
-                    </div>
-                </div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
