@@ -1,15 +1,48 @@
-import React from 'react';
-import { Github, Linkedin, Mail, Phone, MapPin, Send, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Github, Linkedin, Mail, Phone, MapPin, Send, ChevronRight, Loader2 } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  // State management for form inputs and submission feedback
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState({ loading: false, success: null, error: null });
+
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" }
   ];
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: null, error: null });
+
+    try {
+      // Points to your local Node backend port
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus({ loading: false, success: "Message deployed successfully!", error: null });
+        setEmail('');
+        setMessage('');
+      } else {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+    } catch (err) {
+      setStatus({ loading: false, success: null, error: err.message });
+    }
+  };
 
   return (
     <footer id="contact" className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-20 lg:py-24 border-t border-[#30363D] overflow-hidden">
@@ -18,7 +51,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* Updated Header - Matched to Skills.jsx Style */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
           <div className="space-y-4">
             <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
@@ -87,25 +120,49 @@ const Footer = () => {
           {/* Section 3: Quick Message */}
           <div className="space-y-8 flex flex-col items-start w-full">
             <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-[#3FB950]">Quick Message</h4>
-            <form className="w-full space-y-4">
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
               <input 
                 type="email" 
                 placeholder="Email Address" 
                 required
-                className="w-full bg-[#161B22] border border-[#30363D] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#3FB950]/50 transition-all text-[#F0F6FC]"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status.loading}
+                className="w-full bg-[#161B22] border border-[#30363D] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#3FB950]/50 transition-all text-[#F0F6FC] disabled:opacity-50"
               />
               <textarea 
                 placeholder="How can I help?" 
                 rows="4"
                 required
-                className="w-full bg-[#161B22] border border-[#30363D] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#3FB950]/50 transition-all text-[#F0F6FC] resize-none"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                disabled={status.loading}
+                className="w-full bg-[#161B22] border border-[#30363D] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#3FB950]/50 transition-all text-[#F0F6FC] resize-none disabled:opacity-50"
               ></textarea>
+              
               <button 
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 bg-[#3FB950] text-[#0B0E14] font-bold py-3 rounded-lg text-sm hover:bg-[#2ea043] transition-all duration-300 shadow-lg shadow-[#3FB950]/10"
+                disabled={status.loading}
+                className="w-full flex items-center justify-center gap-3 bg-[#3FB950] text-[#0B0E14] font-bold py-3 rounded-lg text-sm hover:bg-[#2ea043] transition-all duration-300 shadow-lg shadow-[#3FB950]/10 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <Send size={16} /> Deploy Message
+                {status.loading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Deploying...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} /> Deploy Message
+                  </>
+                )}
               </button>
+
+              {/* Success/Error Response Notifications */}
+              {status.success && (
+                <p className="text-xs text-[#3FB950] font-mono mt-2">{status.success}</p>
+              )}
+              {status.error && (
+                <p className="text-xs text-red-400 font-mono mt-2">Error: {status.error}</p>
+              )}
             </form>
           </div>
         </div>
