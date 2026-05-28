@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-// Import the updated Brevo SDK package
-const SibApiV3Sdk = require('@getbrevo/brevo');
+// Import the specific v5 Transactional API client classes explicitly
+const { TransactionalEmailsApi, SendSmtpEmail } = require('@getbrevo/brevo');
 require('dotenv').config();
 
 const app = express();
@@ -10,9 +10,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Initialize the Transactional Emails API instance for Version 5 SDK
-const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+// Initialize the Brevo Transactional Email Client instance for v5
+const apiInstance = new TransactionalEmailsApi();
+
+// Set the API Key authenticating the instance
+apiInstance.setApiKey(0, process.env.BREVO_API_KEY); 
+// Note: 0 is the index placement identifier for the standard primary API Key header in Brevo v5
 
 // 1. Root Test Route (Lets you verify your deployment status in a web browser)
 app.get('/', (req, res) => {
@@ -29,8 +32,8 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    // Construct the email object payload matching the V5 contract
-    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    // Construct the email object payload matching the modern v5 structural format
+    const sendSmtpEmail = new SendSmtpEmail();
     
     sendSmtpEmail.subject = "New Portfolio Message!";
     sendSmtpEmail.htmlContent = `
@@ -39,12 +42,12 @@ app.post('/api/contact', async (req, res) => {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
     `;
-    // NOTE: Ensure this sender email is explicitly verified under 'Senders & IPs' in your Brevo Dashboard
+    // NOTE: Ensure vedantilame22@gmail.com is listed under 'Senders & IPs' in your Brevo Dashboard
     sendSmtpEmail.sender = { name: "Portfolio Contact Form", email: "vedantilame22@gmail.com" };
     sendSmtpEmail.to = [{ email: process.env.RECEIVER_EMAIL, name: "Vedant Ilame" }];
     sendSmtpEmail.replyTo = { email: email };
 
-    // Trigger the V5 SDK email delivery promise
+    // Trigger the email delivery promise 
     await apiInstance.sendTransacEmail(sendSmtpEmail);
 
     // Return message field matching your frontend expectations
