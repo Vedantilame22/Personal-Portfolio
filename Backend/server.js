@@ -4,13 +4,17 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// Middleware - Configured cleanly to handle cross-origin routing
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json());
 
-// 1. Health Status Route (Open this in a browser tab to verify the server is alive)
+// 1. Health Status Route (Open this directly in a browser tab to verify the server is alive)
 app.get('/', (req, res) => {
-  res.status(200).send('Backend Server is live and running perfectly!');
+  res.status(200).json({ status: "active", message: "Backend Server is live and running perfectly!" });
 });
 
 // 2. Production Contact Route matching Footer.jsx exactly
@@ -66,7 +70,7 @@ app.post('/api/contact', async (req, res) => {
     }
 
     console.log('Email accepted by Brevo. Message ID:', data.messageId);
-    return res.status(200).json({ success: true, message: 'Email deployed successfully!' });
+    return res.status(200).json({ success: true, successMessage: 'Email deployed successfully!' });
 
   } catch (error) {
     console.error('Fatal Backend Server Catch Triggered:', error);
@@ -74,8 +78,8 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Start Server
+// Start Server - Explicitly binding '0.0.0.0' guarantees Render maps external routes correctly
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is cruising safely on port ${PORT}`);
 });
