@@ -8,10 +8,10 @@ import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0B0E14] text-[#F0F6FC] antialiased selection:bg-[#3FB950]/30">
+    <div className="flex flex-col min-h-screen bg-[#0B0E14] text-[#F0F6FC] antialiased selection:bg-[#3FB950]/30 w-full max-w-full overflow-x-hidden relative">
       <Navbar />
       
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full overflow-x-hidden">
         {/* Sections now flow naturally without forced min-height or extra outer padding */}
         <section id="about">
           <Hero />

@@ -46,26 +46,26 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contact" className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-20 lg:py-24 border-t border-[#30363D] overflow-hidden">
+    <footer id="contact" className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-12 sm:py-20 lg:py-24 border-t border-[#30363D] overflow-hidden">
       {/* Background accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3FB950]/5 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 sm:mb-16 lg:mb-20">
           <div className="space-y-4">
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
               Let's <span className="text-[#3FB950]">Talk</span>
             </h2>
           </div>
-          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+          <p className="max-w-md text-[#8B949E] text-xs sm:text-sm lg:text-lg border-l-2 md:border-l border-[#3FB950]/30 pl-4 sm:pl-6 font-medium leading-relaxed">
             Ready to collaborate on high-performance web architectures and scalable MERN applications.
           </p>
         </div>
 
         {/* 3-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 items-start">
           
           {/* Section 1: Contact Identity */}
           <div className="space-y-8 flex flex-col items-start">
@@ -169,8 +169,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-24 pt-8 border-t border-[#30363D] text-center">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#484F58]">
+        <div className="mt-12 sm:mt-16 lg:mt-24 pt-6 sm:pt-8 border-t border-[#30363D] text-center">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#484F58]">
             <p>© {currentYear} Vedant Ilame </p>
             <span className="hidden md:block text-[#30363D]">|</span>
             <div className="flex items-center gap-2">

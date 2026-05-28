@@ -88,23 +88,23 @@ const Projects = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-20 lg:py-32">
+    <section className="relative w-full bg-[#0B0E14] font-sans antialiased text-[#F0F6FC] py-12 sm:py-20 lg:py-32 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[#3FB950]/5 blur-[180px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 sm:mb-16 lg:mb-20">
           <div className="space-y-4">
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
               Crafted <span className="text-[#3FB950]"> Projects</span>
             </h2>
           </div>
-          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+          <p className="max-w-md text-[#8B949E] text-xs sm:text-sm lg:text-lg border-l-2 md:border-l border-[#3FB950]/30 pl-4 sm:pl-6 font-medium leading-relaxed">
             Showcasing engineered interfaces, scalable architectures, and user-centric solutions.
           </p>
         </div>
 
         {/* 3-Column Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((p, i) => (
             <motion.div 
               key={i}
@@ -136,9 +136,9 @@ const Projects = () => {
               </div>
 
               {/* Card Body */}
-              <div className="p-6 flex-grow">
-                <div className="flex items-start justify-between mb-5">
-                  <div className="p-2.5 bg-[#161B22] border border-[#30363D] text-[#3FB950] rounded-lg group-hover:border-[#3FB950]/30 transition-all">
+              <div className="p-5 sm:p-6 flex-grow">
+                <div className="flex items-start justify-between mb-4 sm:mb-5">
+                  <div className="p-2 sm:p-2.5 bg-[#161B22] border border-[#30363D] text-[#3FB950] rounded-lg group-hover:border-[#3FB950]/30 transition-all">
                     {p.icon}
                   </div>
                   <div className="flex gap-2">
@@ -148,18 +148,18 @@ const Projects = () => {
                       target="_blank" 
                       rel="noreferrer" 
                       title="View Project"
-                      className="p-2.5 bg-[#161B22] border border-[#30363D] hover:border-[#3FB950] rounded-lg transition-all text-[#8B949E] hover:text-[#3FB950]"
+                      className="p-2 sm:p-2.5 bg-[#161B22] border border-[#30363D] hover:border-[#3FB950] rounded-lg transition-all text-[#8B949E] hover:text-[#3FB950]"
                     >
-                      <Github size={18} />
+                      <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
                     </a>
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-[#F0F6FC] mb-3 group-hover:text-[#3FB950] transition-colors">
+                <h3 className="text-base sm:text-lg font-bold text-[#F0F6FC] mb-2 sm:mb-3 group-hover:text-[#3FB950] transition-colors">
                   {p.title}
                 </h3>
                 
-                <p className="text-[#8B949E] text-xs leading-relaxed mb-6  opacity-90 line-clamp-4">
+                <p className="text-[#8B949E] text-[11px] sm:text-xs leading-relaxed mb-4 sm:mb-6  opacity-90 line-clamp-4">
                   
                   {p.desc}
                 </p>

@@ -55,22 +55,22 @@ const Experience = () => {
       {/* Background technical accent glow to match Skills */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3FB950]/5 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Updated Header Section to match Skills.jsx style */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 sm:mb-16 lg:mb-20">
           <div className="space-y-4">
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
               Career <span className="text-[#3FB950]">Milestones</span>
             </h2>
           </div>
-          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+          <p className="max-w-md text-[#8B949E] text-xs sm:text-sm lg:text-lg border-l-2 md:border-l border-[#3FB950]/30 pl-4 sm:pl-6 font-medium leading-relaxed">
             Engineered for growth and technical excellence across diverse internships and professional roles.
           </p>
         </div>
 
         {/* Experience Grid - 2-Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {experiences.map((exp, i) => (
             <motion.div 
               key={i}
@@ -78,24 +78,24 @@ const Experience = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               whileHover={{ translateY: -5 }}
-              className="relative group p-8 rounded-xl bg-[#161B22]/50 border border-[#30363D] transition-all duration-300 overflow-hidden shadow-xl hover:shadow-[#3FB950]/5"
+              className="relative group p-5 sm:p-8 rounded-xl bg-[#161B22]/50 border border-[#30363D] transition-all duration-300 overflow-hidden shadow-xl hover:shadow-[#3FB950]/5"
             >
               {/* Animated Corner Accents */}
               <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-transparent group-hover:border-[#3FB950] transition-all duration-500 rounded-tr-xl"></div>
               <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-transparent group-hover:border-[#3FB950] transition-all duration-500 rounded-bl-xl"></div>
-
+ 
               {/* Background Index Number */}
-              <span className="absolute top-4 right-6 text-8xl font-black text-[#30363D]/20 font-mono pointer-events-none select-none group-hover:text-[#3FB950]/10 transition-colors">
+              <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-black text-[#30363D]/20 font-mono pointer-events-none select-none group-hover:text-[#3FB950]/10 transition-colors">
                 {exp.id}
               </span>
 
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-[#3FB950] text-[#0B0E14] rounded-lg shadow-lg shadow-[#3FB950]/20">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="p-2 sm:p-3 bg-[#3FB950] text-[#0B0E14] rounded-lg shadow-lg shadow-[#3FB950]/20 flex-shrink-0">
                     {exp.icon}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-black text-[#F0F6FC] uppercase tracking-tight font-mono truncate">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-[#F0F6FC] uppercase tracking-tight font-mono truncate">
                       {exp.role}
                     </h3>
                     <a 
@@ -120,20 +120,20 @@ const Experience = () => {
                   ))}
                 </div>
                 
-                <p className="text-[#8B949E] text-sm leading-relaxed border-l-2 border-[#30363D] pl-4 group-hover:border-[#3FB950] transition-colors mb-8">
+                <p className="text-[#8B949E] text-xs sm:text-sm leading-relaxed border-l-2 border-[#30363D] pl-3 sm:pl-4 group-hover:border-[#3FB950] transition-colors mb-6 sm:mb-8">
                   {exp.description}
                 </p>
 
                 {/* Status Indicator & Timeline */}
-                <div className="mt-8 pt-6 border-t border-[#30363D] flex items-center justify-between">
+                <div className="mt-6 pt-4 sm:mt-8 sm:pt-6 border-t border-[#30363D] flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-[#3FB950] animate-pulse"></div>
-                        <span className="text-[10px] font-mono text-[#484F58] uppercase tracking-widest">{exp.status}</span>
+                        <span className="text-[9px] sm:text-[10px] font-mono text-[#484F58] uppercase tracking-widest">{exp.status}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-[11px] font-mono font-bold text-[#F0F6FC]">{exp.period}</span>
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold text-[#F0F6FC]">{exp.period}</span>
                       <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={18} className="text-[#30363D] hover:text-[#3FB950] transition-colors cursor-pointer" />
+                        <ExternalLink size={16} className="text-[#30363D] hover:text-[#3FB950] transition-colors cursor-pointer" />
                       </a>
                     </div>
                 </div>

@@ -42,24 +42,24 @@ const Skills = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3FB950]/5 blur-[150px] rounded-full pointer-events-none" />
       
       {/* Container with increased bottom padding */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 py-12 sm:py-20 lg:py-32">
         
         {/* Header Section with increased margin bottom */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 sm:mb-16 lg:mb-20">
           <div className="space-y-4">
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tighter text-[#F0F6FC]">
               Technical <span className="text-[#3FB950]">Expertise</span>
             </h2>
           </div>
-          <p className="max-w-md text-[#8B949E] text-sm lg:text-lg border-l border-[#3FB950]/30 pl-6 font-medium leading-relaxed">
+          <p className="max-w-md text-[#8B949E] text-xs sm:text-sm lg:text-lg border-l-2 md:border-l border-[#3FB950]/30 pl-4 sm:pl-6 font-medium leading-relaxed">
             Engineered for scalability, high performance, and seamless user experiences across the full development lifecycle.
           </p>
         </div>
 
         {/* Grid Layout with increased spacing between category columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 sm:gap-y-16 gap-x-10 lg:gap-x-20">
           {skillCategories.map((category, idx) => (
-            <div key={idx} className="space-y-10">
+            <div key={idx} className="space-y-6 sm:space-y-8 lg:space-y-10">
               {/* Category Title */}
               <div className="flex items-center gap-4">
                 <div className="text-[#3FB950] opacity-80">{category.icon}</div>
@@ -69,7 +69,7 @@ const Skills = () => {
               </div>
 
               {/* Skills List with increased spacing between rows */}
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4 sm:gap-6">
                 {category.skills.map((skill, i) => (
                   <motion.div 
                     key={i} 
@@ -77,18 +77,18 @@ const Skills = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-5 group cursor-default"
+                    className="flex items-center gap-3 sm:gap-5 group cursor-default"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#161B22] border border-[#8B949E]/10 group-hover:border-[#3FB950]/40 transition-all duration-300">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg bg-[#161B22] border border-[#8B949E]/10 group-hover:border-[#3FB950]/40 transition-all duration-300 flex-shrink-0">
                       <img 
                         src={skill.icon} 
                         alt={skill.name} 
-                        className={`w-7 h-7 object-contain transition-transform group-hover:scale-110 ${skill.invertDark ? 'brightness-200' : ''}`}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform group-hover:scale-110 ${skill.invertDark ? 'brightness-200' : ''}`}
                       />
                     </div>
                     <div className="flex flex-col flex-grow">
                       <div className="flex justify-between items-end">
-                        <span className="text-base font-bold text-[#F0F6FC] group-hover:text-[#3FB950] transition-colors">
+                        <span className="text-sm sm:text-base font-bold text-[#F0F6FC] group-hover:text-[#3FB950] transition-colors">
                           {skill.name}
                         </span>
                       </div>
