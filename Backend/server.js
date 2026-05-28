@@ -8,30 +8,30 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 1. Health Status Route (Open this in your browser to verify the server is live)
+// 1. Health Status Route (Open this in a browser tab to verify the server is alive)
 app.get('/', (req, res) => {
   res.status(200).send('Backend Server is live and running perfectly!');
 });
 
-// 2. Production Contact Route
+// 2. Production Contact Route matching Footer.jsx exactly
 app.post('/api/contact', async (req, res) => {
   const { email, message } = req.body;
 
-  // Form input validation
+  // Validate incoming fields exactly as sent from the frontend form
   if (!email || !message) {
     return res.status(400).json({ success: false, error: 'Email and message are required.' });
   }
 
   try {
-    // Structural JSON payload explicitly following the Brevo V3 REST API contract
+    // Pure JSON payload conforming directly to Brevo's REST API contract
     const emailPayload = {
       sender: { 
         name: "Portfolio Contact Form", 
-        email: "vedantilame22@gmail.com" 
+        email: "vedantilame22@gmail.com" // Must be your verified Brevo sender email
       },
       to: [
         { 
-          email: process.env.RECEIVER_EMAIL, 
+          email: process.env.RECEIVER_EMAIL || "vedantilame22@gmail.com", 
           name: "Vedant Ilame" 
         }
       ],
@@ -47,7 +47,7 @@ app.post('/api/contact', async (req, res) => {
       `
     };
 
-    // Make a direct HTTP request to Brevo's core delivery server
+    // Make a standard native HTTP request directly to Brevo's API
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
@@ -60,13 +60,12 @@ app.post('/api/contact', async (req, res) => {
 
     const data = await response.json();
 
-    // Check if Brevo rejected the transmission (e.g., bad API key or unverified sender)
     if (!response.ok) {
-      console.error('Brevo API Endpoint Error Rejection:', data);
-      return res.status(response.status).json({ success: false, error: data.message || 'Brevo API error occurred.' });
+      console.error('Brevo API Rejection:', data);
+      return res.status(response.status).json({ success: false, error: data.message || 'Brevo API error.' });
     }
 
-    console.log('Email safely accepted by Brevo servers. Message ID:', data.messageId);
+    console.log('Email accepted by Brevo. Message ID:', data.messageId);
     return res.status(200).json({ success: true, message: 'Email deployed successfully!' });
 
   } catch (error) {
