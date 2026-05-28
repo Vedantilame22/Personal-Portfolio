@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-// Import the core BrevoClient wrapper 
-const { BrevoClient } = require('@getbrevo/brevo');
+// Import the updated Brevo SDK package
+const SibApiV3Sdk = require('@getbrevo/brevo');
 require('dotenv').config();
 
 const app = express();
@@ -10,12 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Initialize the Brevo Client with your API key
-const brevo = new BrevoClient({
-  apiKey: process.env.BREVO_API_KEY,
+// Initialize the Transactional Emails API instance for Version 5 SDK
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+
+// 1. Root Test Route (Lets you verify your deployment status in a web browser)
+app.get('/', (req, res) => {
+  res.send('Backend Server is live and running perfectly!');
 });
 
-// Contact Route
+// 2. Contact POST Route
 app.post('/api/contact', async (req, res) => {
   const { email, message } = req.body;
 
@@ -25,20 +29,25 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    // Send transactional email directly using the client's built-in transactional method
-    await brevo.transactionalEmails.sendTransacEmail({
-      subject: "New Portfolio Message!",
-      htmlContent: `
+    // Construct the email object payload matching the V5 contract
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    
+    sendSmtpEmail.subject = "New Portfolio Message!";
+    sendSmtpEmail.htmlContent = `
         <h3>New message from your portfolio site</h3>
         <p><strong>Sender Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
-      `,
-      sender: { name: "Portfolio Contact Form", email: "vedantilame22@gmail.com" },
-      to: [{ email: process.env.RECEIVER_EMAIL, name: "Vedant Ilame" }],
-      replyTo: { email: email }
-    });
+    `;
+    // NOTE: Ensure this sender email is explicitly verified under 'Senders & IPs' in your Brevo Dashboard
+    sendSmtpEmail.sender = { name: "Portfolio Contact Form", email: "vedantilame22@gmail.com" };
+    sendSmtpEmail.to = [{ email: process.env.RECEIVER_EMAIL, name: "Vedant Ilame" }];
+    sendSmtpEmail.replyTo = { email: email };
 
+    // Trigger the V5 SDK email delivery promise
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+
+    // Return message field matching your frontend expectations
     return res.status(200).json({ success: true, message: 'Email deployed successfully!' });
   } catch (error) {
     console.error('Brevo Client API Error:', error);
