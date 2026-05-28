@@ -22,7 +22,7 @@ const Footer = () => {
 
     try {
       // Points to your local Node backend port
-      const response = await fetch('https://vedant-portfolio-backend.onrender.com/api/contact',  {
+      const response = await fetch('https://personal-portfolio-backend-m9kg.onrender.com',  {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
