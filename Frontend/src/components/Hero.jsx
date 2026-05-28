@@ -92,7 +92,9 @@ const Hero = () => {
               className="flex flex-wrap items-center gap-4 sm:gap-6 pt-4 sm:pt-6"
             >
               <a 
-                href="/vedant-cv.pdf"
+                href="https://drive.google.com/uc?export=download&id=1LPKRT7O-sjYHOGTK28AvRjDPsXbTaBC3"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-md bg-[#3FB950] text-[#0B0E14] font-bold hover:brightness-110 transition-all duration-300 shadow-lg shadow-[#3FB950]/10 w-full sm:w-auto"
               >
                 <span className="font-sans text-xs uppercase tracking-widest">Download CV</span> 
